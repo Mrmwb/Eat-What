@@ -22,6 +22,8 @@ class FoodRecommendationApp {
   }
 
   getLocation() {
+    const locationEl = document.getElementById('location');
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -29,17 +31,20 @@ class FoodRecommendationApp {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
           };
+          locationEl.textContent = `📍 位置已获取`;
           this.fetchRestaurants();
         },
         (error) => {
           console.error('获取位置失败:', error);
           this.currentLocation = { latitude: 31.2304, longitude: 121.4737 };
+          locationEl.textContent = '📍 使用默认位置（上海）';
           this.fetchRestaurants();
         },
-        { timeout: 10000, enableHighAccuracy: true }
+        { timeout: 15000, enableHighAccuracy: false, maximumAge: 60000 }
       );
     } else {
       this.currentLocation = { latitude: 31.2304, longitude: 121.4737 };
+      locationEl.textContent = '📍 使用默认位置（上海）';
       this.fetchRestaurants();
     }
   }
@@ -286,14 +291,4 @@ class FoodRecommendationApp {
 
 document.addEventListener('DOMContentLoaded', () => {
   new FoodRecommendationApp();
-  
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-      .then((registration) => {
-        console.log('Service Worker registered:', registration);
-      })
-      .catch((error) => {
-        console.log('Service Worker registration failed:', error);
-      });
-  }
 });
