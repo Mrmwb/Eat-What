@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#ff6b35">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>美食推荐 - 今天吃什么</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=PingFang+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-content">
+        <div class="logo">🍔</div>
+        <h1 class="title">今天吃什么</h1>
+        <div class="location" id="location">📍 获取位置中...</div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <div class="hero-section">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+          <h2>还在纠结今天吃什么?</h2>
+          <p>让我为你推荐附近最棒的美食</p>
+          <button class="random-btn" id="randomBtn">
+            <span class="btn-icon">🎲</span>
+            <span>随机推荐</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="restaurants-section">
+        <div class="section-header">
+          <h3>附近美食 <span class="count" id="restaurantCount">0</span></h3>
+          <span class="sort-label">按评分排序</span>
+        </div>
+        <div class="restaurants-list" id="restaurantsList">
+          <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>正在搜索附近餐厅...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="modal">
+      <div class="modal-content" id="modalContent">
+        <div class="modal-header">
+          <h3>推荐餐厅</h3>
+          <button class="close-btn" id="closeBtn">×</button>
+        </div>
+        <div class="restaurant-detail">
+          <div class="restaurant-image" id="restaurantImage"></div>
+          <div class="restaurant-info">
+            <div class="restaurant-name" id="restaurantName"></div>
+            <div class="restaurant-meta">
+              <span class="rating">⭐ <span id="rating">0</span></span>
+              <span class="distance" id="distance">0m</span>
+            </div>
+            <div class="restaurant-tags" id="restaurantTags"></div>
+          </div>
+          <div class="detail-section">
+            <h4>特色推荐</h4>
+            <div class="dishes" id="dishes"></div>
+          </div>
+          <div class="detail-section">
+            <h4>人均消费</h4>
+            <div class="price" id="price"></div>
+          </div>
+          <div class="detail-section">
+            <h4>用户评价</h4>
+            <div class="reviews" id="reviews"></div>
+          </div>
+          <button class="navigate-btn" id="navigateBtn">导航前往</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
